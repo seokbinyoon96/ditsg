@@ -1,10 +1,14 @@
 # DITSG project page
 
 Project page for **DITSG** (TODO: expand name), served via GitHub Pages at
-https://seokbinyoon96.github.io/ditsg.github.io (or `https://ditsg.github.io` if this repo is
-renamed to the root user page — see below).
+https://seokbinyoon96.github.io/ditsg/
+
+(Note: the bare `ditsg.github.io` domain is already owned by an unrelated GitHub organization,
+so this project page lives at the path above instead.)
 
 Built from the [Nerfies project page template](https://github.com/nerfies/nerfies.github.io).
+
+Code: https://github.com/seokbinyoon96/ditsg-code
 
 ## TODO before publishing
 
