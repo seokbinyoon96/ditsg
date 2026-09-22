@@ -1,5 +1,19 @@
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
+}
+
+.title,
+.subtitle,
+.content,
+.button {
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
+}
+
+/* Figures and videos sit right against the paragraph that explains them otherwise. */
+.section img,
+.section video {
+  display: block;
+  margin: 0.75rem auto 1.75rem;
 }
 
 
@@ -24,12 +38,12 @@ body {
 }
 
 .teaser {
-  font-family: 'Google Sans', sans-serif;
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
 }
 
 
 .publication-title {
-    font-family: 'Google Sans', sans-serif;
+    font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
 }
 
 .publication-banner {
@@ -45,7 +59,7 @@ body {
 }
 
 .publication-authors {
-    font-family: 'Google Sans', sans-serif;
+    font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
 }
 
 .publication-venue {

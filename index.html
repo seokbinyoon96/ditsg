@@ -124,8 +124,8 @@
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
@@ -149,11 +149,30 @@
       </div>
     </div>
     <!--/ Abstract. -->
+  </div>
+</section>
 
+
+<section class="section">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
+        <h2 class="title is-3">Overview</h2>
         <img src="./static/images/architecture.png"
              alt="DiTSG architecture: DiTSG block and sampling loop."/>
+        <div class="content has-text-justified">
+          <p>
+            We propose Diffusion Transformers for Traffic Scene Generation (<i>DiTSG</i>), a
+            context-aware generative model for multi-agent air traffic scenes. DiTSG employs stacked
+            multi agent inverted Transformer (MAIFormer) [Yoon et al., 2026] layers as the denoising
+            backbone of a diffusion transformer. Starting from noise, DiTSG iteratively refines the
+            trajectories of all aircraft in a scene while modeling inter-aircraft dependencies at
+            every denoising step. We condition the generation process on agent-specific required
+            times of arrival (RTAs), enabling different temporal traffic configurations to be
+            generated. This joint denoising process enables the generated trajectories to remain
+            mutually consistent while preserving realistic traffic interactions.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -218,7 +237,7 @@
         <h2 class="title is-3">Agent Attention throughout the Denoising Process</h2>
         <img src="./static/images/attention_denoising.png"
              alt="Agent attention from the query aircraft at six steps of the denoising process."/>
-        <video id="attention-video" autoplay controls muted loop playsinline width="100%">
+        <video id="attention-video" autoplay controls muted loop playsinline width="75%">
           <source src="./static/videos/attention_denoising.mp4" type="video/mp4">
         </video>
         <div class="content has-text-justified">
