@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=quantitative-results-1">
+  <link rel="stylesheet" href="./static/css/index.css?v=results-interpretation-2">
   <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -51,7 +51,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">DiTSG: Context-Aware Air Traffic Scene Generation with Multi-Agent Diffusion Transformers</h1>
+          <h1 class="title is-1 publication-title"><span class="ditsg-accent">DiTSG</span>: Context-Aware Air Traffic Scene Generation with Multi-Agent Diffusion Transformers</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=tcjmyp4AAAAJ&amp;hl=en">Seokbin Yoon</a><sup>1</sup>,</span>
@@ -253,20 +253,22 @@
         </div>
         <p class="metric-note">Metrics capture spatial fidelity, novelty relative to unseen real scenes, variation under a fixed condition, and separation violations; lower is better for <i>D</i><sub>occ</sub> and SVR.</p>
         <div class="content has-text-justified">
-          <p>Compared with Multi-Agent Variational Autoencoder (MA-VAE) using the same MAIFormer backbone, DiTSG more than halves spatial occupancy divergence (0.015 vs. 0.033) and reduces the separation violation rate from 0.250% to 0.101%. Both models achieve novelty close to the held-out real-data reference, while DiTSG retains variation under the same arrival-time condition. MA-VAE has higher diversity, but also greater spatial divergence, so diversity alone does not establish better performance. DiTSG’s joint flow-matching formulation may help preserve inter-aircraft relationships more consistently than independently sampled agent latents in MA-VAE.</p>
+          <p>DiTSG and the Multi-Agent Variational Autoencoder (MA-VAE) share the same MAIFormer backbone, isolating the main difference to flow matching versus variational latent modeling. DiTSG more than halves spatial occupancy divergence (0.015 vs. 0.033) and lowers the separation violation rate from 0.250% to 0.101%, indicating closer agreement with real traffic’s spatial distribution and separation behavior. Novelty scores of 0.953 and 0.947 are both near the real-data reference of one: generated scenes are approximately as distant from the training set as unseen real scenes.</p>
+          <p>MA-VAE produces greater diversity under a fixed arrival-time condition (16.690 vs. 14.938 NM), but its higher spatial divergence suggests that some variation extends beyond observed traffic patterns. Diversity therefore supports the absence of collapse to a single scene, rather than providing a standalone ranking. One possible explanation for DiTSG’s advantage is the training–generation mismatch in MA-VAE: its encoder learns scene-dependent agent latents, but generation samples them independently, potentially losing their joint relationships. DiTSG instead transports the same Gaussian prior used during training through a learned joint velocity field, which may better preserve interactions across aircraft.</p>
         </div>
         <div class="results-figures">
           <figure>
-            <a href="./static/images/separation_hist.png" target="_blank" rel="noopener"><img src="./static/images/separation_hist.png" loading="lazy" alt="Real and generated horizontal and vertical separation distributions, with reference thresholds at 3 NM and 1,000 ft."></a>
-            <figcaption>Inter-aircraft separation</figcaption>
+            <a href="./static/images/separation_hist.png" target="_blank" rel="noopener"><img src="./static/images/separation_hist.png" loading="lazy" alt="Real and generated minimum horizontal and vertical separation distributions, with reference thresholds at 3 NM and 1,000 ft."></a>
+            <figcaption><strong>Separation patterns in real and generated traffic.</strong></figcaption>
           </figure>
           <figure>
             <a href="./static/images/tau_and_t_curve.png" target="_blank" rel="noopener"><img src="./static/images/tau_and_t_curve.png" loading="lazy" alt="Spatial occupancy divergence versus arrival-time condition tau, and horizontal and vertical MAE over diffusion timestep s."></a>
-            <figcaption>Arrival-time conditioning and denoising</figcaption>
+            <figcaption><strong>Traffic fidelity across arrival stages and diffusion timesteps.</strong></figcaption>
           </figure>
         </div>
         <div class="content has-text-justified">
-          <p>The separation histograms show close overlap between real and generated traffic in both horizontal and vertical spacing. The dashed lines mark the 3 NM and 1,000 ft thresholds; a violation requires both to be breached simultaneously. The curves show lower spatial occupancy divergence for smaller arrival-time conditions τ, while horizontal and vertical MAE decrease as diffusion timestep <i>s</i> approaches one, illustrating progressive refinement during generation.</p>
+          <p>The separation histograms compare minimum horizontal and vertical distances between aircraft pairs. Their close overlap shows that DiTSG reproduces much of the separation pattern observed in real traffic, beyond the single SVR value in the table. Horizontal separations are concentrated above 3 NM, while the vertical distribution spans both sides of 1,000 ft. Falling below either threshold alone is not a violation: both must be breached simultaneously. These marginal distributions therefore complement the scene-level SVR, which remains small but nonzero for DiTSG (0.101%), compared with zero in the real test scenes.</p>
+          <p>The arrival-stage curve measures spatial JSD within each required-time-of-arrival (τ) range. Divergence is greatest at larger τ and falls sharply toward smaller τ, indicating closer agreement with real traffic nearer arrival and less accurate spatial modeling at earlier stages. The diffusion-time curves measure horizontal and vertical mean absolute error between predicted and true positions. Both decrease as <i>s</i> approaches one, showing that position estimates become more accurate over the denoising process.</p>
         </div>
       </div>
     </div>

@@ -155,3 +155,11 @@ strong {
   .results-figures { grid-template-columns: 1fr; }
   .results-table th, .results-table td { padding: 0.65rem 0.6rem; font-size: 0.85rem; }
 }
+
+.publication-title .ditsg-accent {
+  color: #2389ff;
+  background: linear-gradient(90deg, #1680f5, #539fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
