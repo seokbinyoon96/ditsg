@@ -134,3 +134,24 @@ strong {
   margin: 0;
   width: 100%;
 }
+
+/* Quantitative results: readable numeric columns and paired, expandable plots. */
+.results-table-wrap { overflow-x: auto; margin: 0 auto 0.8rem; }
+.results-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.results-table caption { text-align: left; color: #666; font-size: 0.95rem; padding-bottom: 0.75rem; }
+.results-table th, .results-table td { padding: 0.8rem 1rem; text-align: center; white-space: nowrap; border-bottom: 1px solid #e4e8ec; }
+.results-table th:first-child { text-align: left; }
+.results-table thead { background: #f5f7f9; border-top: 2px solid #667686; }
+.results-table thead th { font-weight: 600; color: #394553; }
+.results-table th span { font-weight: 400; }
+.results-table .ours { background: #edf5fb; }
+.results-table .ours th, .results-table .ours strong { color: #245d83; }
+.metric-note { color: #687078; font-size: 0.88rem; line-height: 1.5; margin-bottom: 1.25rem; }
+.results-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin: 1.75rem 0 1.25rem; }
+.results-figures figure { margin: 0; min-width: 0; }
+.results-figures img { width: 100%; height: auto; margin: 0 0 0.65rem; }
+.results-figures figcaption { text-align: center; color: #66717b; font-size: 0.9rem; }
+@media screen and (max-width: 768px) {
+  .results-figures { grid-template-columns: 1fr; }
+  .results-table th, .results-table td { padding: 0.65rem 0.6rem; font-size: 0.85rem; }
+}

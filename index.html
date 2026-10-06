@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=section-spacing-60">
+  <link rel="stylesheet" href="./static/css/index.css?v=quantitative-results-1">
   <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -228,6 +228,45 @@
             DiTSG learns this interaction pattern directly during
             generation without explicit supervision on which aircraft should be attended to.
           </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="quantitative-results">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <div class="results-table-wrap">
+          <table class="results-table">
+            <caption>Evaluation of generated traffic scenes</caption>
+            <thead><tr><th scope="col">Method</th><th scope="col"><i>D</i><sub>occ</sub> ↓</th><th scope="col"><i>R</i><sub>nov</sub> ≈ 1</th><th scope="col">Diversity <span>(NM)</span></th><th scope="col">SVR <span>(%)</span> ↓</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Real</th><td>—</td><td>1.000</td><td>—</td><td>0.000</td></tr>
+              <tr><th scope="row">MA-VAE</th><td>0.033</td><td>0.947</td><td>16.690</td><td>0.250</td></tr>
+              <tr class="ours"><th scope="row">DiTSG</th><td><strong>0.015</strong></td><td>0.953</td><td>14.938</td><td><strong>0.101</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="metric-note">Metrics capture spatial fidelity, novelty relative to unseen real scenes, variation under a fixed condition, and separation violations; lower is better for <i>D</i><sub>occ</sub> and SVR.</p>
+        <div class="content has-text-justified">
+          <p>Compared with MA-VAE using the same MAIFormer backbone, DiTSG more than halves spatial occupancy divergence (0.015 vs. 0.033) and reduces the separation violation rate from 0.250% to 0.101%. Both models achieve novelty close to the held-out real-data reference, while DiTSG retains variation under the same arrival-time condition. MA-VAE has higher diversity, but also greater spatial divergence, so diversity alone does not establish better performance. DiTSG’s joint flow-matching formulation may help preserve inter-aircraft relationships more consistently than independently sampled agent latents in MA-VAE.</p>
+        </div>
+        <div class="results-figures">
+          <figure>
+            <a href="./static/images/separation_hist.png" target="_blank" rel="noopener"><img src="./static/images/separation_hist.png" loading="lazy" alt="Real and generated horizontal and vertical separation distributions, with reference thresholds at 3 NM and 1,000 ft."></a>
+            <figcaption>Inter-aircraft separation</figcaption>
+          </figure>
+          <figure>
+            <a href="./static/images/tau_and_t_curve.png" target="_blank" rel="noopener"><img src="./static/images/tau_and_t_curve.png" loading="lazy" alt="Spatial occupancy divergence versus arrival-time condition tau, and horizontal and vertical MAE over diffusion timestep s."></a>
+            <figcaption>Arrival-time conditioning and denoising</figcaption>
+          </figure>
+        </div>
+        <div class="content has-text-justified">
+          <p>The separation histograms show close overlap between real and generated traffic in both horizontal and vertical spacing. The dashed lines mark the 3 NM and 1,000 ft thresholds; a violation requires both to be breached simultaneously. The curves show lower spatial occupancy divergence for smaller arrival-time conditions τ, while horizontal and vertical MAE decrease as diffusion timestep <i>s</i> approaches one, illustrating progressive refinement during generation.</p>
         </div>
       </div>
     </div>
