@@ -253,7 +253,7 @@
         </div>
         <p class="metric-note">Metrics capture spatial fidelity, novelty relative to unseen real scenes, variation under a fixed condition, and separation violations; lower is better for <i>D</i><sub>occ</sub> and SVR.</p>
         <div class="content has-text-justified">
-          <p>Compared with MA-VAE using the same MAIFormer backbone, DiTSG more than halves spatial occupancy divergence (0.015 vs. 0.033) and reduces the separation violation rate from 0.250% to 0.101%. Both models achieve novelty close to the held-out real-data reference, while DiTSG retains variation under the same arrival-time condition. MA-VAE has higher diversity, but also greater spatial divergence, so diversity alone does not establish better performance. DiTSG’s joint flow-matching formulation may help preserve inter-aircraft relationships more consistently than independently sampled agent latents in MA-VAE.</p>
+          <p>Compared with Multi-Agent Variational Autoencoder (MA-VAE) using the same MAIFormer backbone, DiTSG more than halves spatial occupancy divergence (0.015 vs. 0.033) and reduces the separation violation rate from 0.250% to 0.101%. Both models achieve novelty close to the held-out real-data reference, while DiTSG retains variation under the same arrival-time condition. MA-VAE has higher diversity, but also greater spatial divergence, so diversity alone does not establish better performance. DiTSG’s joint flow-matching formulation may help preserve inter-aircraft relationships more consistently than independently sampled agent latents in MA-VAE.</p>
         </div>
         <div class="results-figures">
           <figure>
