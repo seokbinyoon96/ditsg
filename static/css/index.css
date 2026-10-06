@@ -14,6 +14,12 @@ strong {
   font-weight: bold;
 }
 
+/* Keep section spacing at 60% of the default 3rem. */
+.section {
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+}
+
 /* Figures and videos sit right against the paragraph that explains them otherwise. */
 .section img,
 .section video {
